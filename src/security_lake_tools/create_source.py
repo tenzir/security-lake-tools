@@ -14,7 +14,7 @@ from typing import Dict, Optional
 
 try:
     import boto3
-    from botocore.exceptions import ClientError, NoCredentialsError
+    from botocore.exceptions import ClientError, NoCredentialsError, TokenRetrievalError
 except ImportError:
     print("Error: boto3 is required. Install it with: pip install boto3")
     sys.exit(1)
@@ -99,6 +99,11 @@ def get_current_account_id(session: boto3.Session) -> Optional[str]:
         return response['Account']
     except (ClientError, NoCredentialsError):
         return None
+    except TokenRetrievalError:
+        print("✗ AWS SSO token has expired")
+        print("  Please refresh your SSO session:")
+        print("  aws sso login --profile <your-profile>")
+        return None
 
 
 def verify_glue_role(session: boto3.Session, role_arn: str) -> bool:
@@ -113,6 +118,11 @@ def verify_glue_role(session: boto3.Session, role_arn: str) -> bool:
             return False
         # For other errors (e.g., access denied), assume role might exist
         return True
+    except TokenRetrievalError as e:
+        print("✗ AWS SSO token has expired")
+        print("  Please refresh your SSO session:")
+        print("  aws sso login --profile <your-profile>")
+        raise
 
 
 def create_glue_role(session: boto3.Session, role_name: str, account_id: str) -> Optional[str]:
