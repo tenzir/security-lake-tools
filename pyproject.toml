@@ -1,0 +1,101 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "security-lake-tools"
+version = "0.1.0"
+description = "Tools for managing AWS Security Lake custom sources"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+keywords = ["aws", "security-lake", "ocsf", "security", "logging"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: System :: Logging",
+]
+
+dependencies = [
+    "boto3>=1.26.0",
+    "botocore>=1.29.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/security-lake-tools"
+Repository = "https://github.com/yourusername/security-lake-tools"
+Issues = "https://github.com/yourusername/security-lake-tools/issues"
+Documentation = "https://github.com/yourusername/security-lake-tools#readme"
+
+[project.scripts]
+security-lake-create-source = "security_lake_tools.create_source:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1.0",
+    "black>=23.0",
+    "mypy>=1.0",
+    "boto3-stubs[securitylake,iam,sts]>=1.26.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/security_lake_tools"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+src = ["src"]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "UP", # pyupgrade
+    "B",  # flake8-bugbear
+    "C",  # flake8-comprehensions
+    "N",  # pep8-naming
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py38"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.coverage.run]
+source = ["security_lake_tools"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
