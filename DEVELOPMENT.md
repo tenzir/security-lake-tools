@@ -62,9 +62,17 @@ PYTHONPATH=src:$PYTHONPATH python -m security_lake_tools.create_source --help
 git clone https://github.com/yourusername/security-lake-tools
 cd security-lake-tools
 
+# Create a virtual environment
+uv venv
+
+# Activate the virtual environment
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
 # Install with development dependencies
 uv pip install -e ".[dev]"
 ```
+
+Note: The virtual environment is required for `uv pip install`. Alternatively, you can use `uv run` which handles the environment automatically.
 
 ### Running Tests
 
