@@ -1,8 +1,9 @@
 # Security Lake Tools
 
+[![CI](https://github.com/tenzir/security-lake-tools/actions/workflows/test.yml/badge.svg)](https://github.com/tenzir/security-lake-tools/actions/workflows/test.yml)
 [![PyPI version](https://badge.fury.io/py/security-lake-tools.svg)](https://badge.fury.io/py/security-lake-tools)
 [![Python versions](https://img.shields.io/pypi/pyversions/security-lake-tools.svg)](https://pypi.org/project/security-lake-tools/)
-[![License](https://img.shields.io/pypi/l/security-lake-tools.svg)](https://github.com/yourusername/security-lake-tools/blob/main/LICENSE)
+[![License](https://img.shields.io/pypi/l/security-lake-tools.svg)](https://github.com/tenzir/security-lake-tools/blob/main/LICENSE)
 
 Tools for managing AWS Security Lake custom sources with OCSF (Open Cybersecurity Schema Framework) support.
 
