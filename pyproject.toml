@@ -4,11 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "security-lake-tools"
-version = "0.1.1"
+version = "0.1.2"
 description = "Tools for managing AWS Security Lake custom sources"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {file = "LICENSE"}
+license = {text = "Apache-2.0"}
 authors = [
     {name = "Tenzir", email = "engineering@tenzir.com"},
 ]
