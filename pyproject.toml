@@ -66,8 +66,10 @@ select = [
     "I",  # isort
     "UP", # pyupgrade
     "B",  # flake8-bugbear
-    "C",  # flake8-comprehensions
     "N",  # pep8-naming
+]
+ignore = [
+    "C901",  # function complexity
 ]
 
 [tool.black]
