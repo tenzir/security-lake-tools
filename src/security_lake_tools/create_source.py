@@ -352,7 +352,7 @@ def create_custom_source(
         return False
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser(
         description="Create a custom log source in Amazon Security Lake for OCSF event class",
         formatter_class=argparse.RawDescriptionHelpFormatter,
