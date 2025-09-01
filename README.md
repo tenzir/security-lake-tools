@@ -17,28 +17,14 @@ Tools for managing AWS Security Lake custom sources with OCSF (Open Cybersecurit
 
 ## Installation
 
-### Using uvx (Recommended)
+The easiest way to use this tool is with [uvx](https://github.com/astral-sh/uv),
+which runs the tool in an isolated environment:
 
-The easiest way to use this tool is with [uvx](https://github.com/astral-sh/uv), which runs the tool in an isolated environment:
-
-```bash
-# Run directly without installation
+```sh
 uvx --from security-lake-tools security-lake-create-source --help
-
-# Or with a shorter alias
-alias sl-create='uvx --from security-lake-tools security-lake-create-source'
-sl-create 1001 --external-id your-external-id
 ```
 
-### Traditional Installation
-
-Using pip:
-
-```bash
-pip install security-lake-tools
-```
-
-Using [uv](https://github.com/astral-sh/uv):
+Alternatively, install it with:
 
 ```bash
 uv pip install security-lake-tools
