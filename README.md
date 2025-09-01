@@ -33,11 +33,13 @@ sl-create 1001 --external-id your-external-id
 ### Traditional Installation
 
 Using pip:
+
 ```bash
 pip install security-lake-tools
 ```
 
 Using [uv](https://github.com/astral-sh/uv):
+
 ```bash
 uv pip install security-lake-tools
 ```
@@ -113,9 +115,16 @@ Options:
 
 ### OCSF Event Classes
 
-The tool supports all standard OCSF event classes:
+The tool supports all standard OCSF event classes that are accepted by Security
+Lake.
+
+> [!NOTE]
+> AWS Security Lake does not support the OCSF Base Event (class_uid 0). While
+> Base Event exists in the OCSF specification as an abstract parent class,
+> Security Lake only accepts concrete event types.
 
 #### System Activity (1xxx)
+
 - 1001: File System Activity
 - 1002: Kernel Extension Activity
 - 1003: Kernel Activity
@@ -127,6 +136,7 @@ The tool supports all standard OCSF event classes:
 - 1009: Script Activity
 
 #### Findings (2xxx)
+
 - 2001: Security Finding
 - 2002: Vulnerability Finding
 - 2003: Compliance Finding
@@ -140,12 +150,14 @@ The tool supports all standard OCSF event classes:
 ### IAM Role Management
 
 By default, the tool automatically creates a Glue service role with:
+
 - Trust relationship with `glue.amazonaws.com`
 - AWS managed policy `AWSGlueServiceRole`
 - Custom S3 policy for Security Lake buckets
 - Lake Formation permissions
 
 To use an existing role:
+
 ```bash
 security-lake-create-source 1001 \
   --external-id your-external-id \
@@ -153,6 +165,7 @@ security-lake-create-source 1001 \
 ```
 
 To prevent automatic role creation:
+
 ```bash
 security-lake-create-source 1001 \
   --external-id your-external-id \
@@ -198,6 +211,7 @@ For each custom source, Security Lake creates:
 ### Debug Mode
 
 For more detailed output, set the `AWS_DEBUG` environment variable:
+
 ```bash
 AWS_DEBUG=1 security-lake-create-source 1001 --external-id test
 ```
