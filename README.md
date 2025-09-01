@@ -82,7 +82,8 @@ security-lake-create-source --list
 ### Prerequisites
 
 1. **AWS Credentials**: Configure AWS credentials using one of:
-   - `aws configure`
+   - `aws configure` (for access keys)
+   - `aws configure sso` (for SSO authentication)
    - Environment variables (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`)
    - IAM role (if running on EC2)
 
