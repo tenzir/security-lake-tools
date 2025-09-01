@@ -34,23 +34,13 @@ uv pip install security-lake-tools
 
 ### Create a custom source
 
-```bash
-# Using uvx (no installation needed)
-uvx --from security-lake-tools security-lake-create-source 1001 \
-  --external-id your-external-id \
-  --region us-east-1
-
-# Or if installed traditionally
-security-lake-create-source 1001 \
-  --external-id your-external-id \
-  --region us-east-1
-
-# With explicit configuration
-uvx --from security-lake-tools security-lake-create-source 1001 \
+```sh
+uvx --from security-lake-tools security-lake-create-source \
   --external-id your-external-id \
   --region us-east-1 \
   --account-id 123456789012 \
-  --profile production
+  --profile production \
+  1001
 ```
 
 ### List available OCSF event classes
