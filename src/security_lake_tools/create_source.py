@@ -114,7 +114,7 @@ def verify_glue_role(session: boto3.Session, role_arn: str) -> bool:
         print("✗ AWS SSO token has expired")
         print("  Please refresh your SSO session:")
         print("  aws sso login --profile <your-profile>")
-        raise
+        return False
 
 
 def create_glue_role(session: boto3.Session, role_name: str, account_id: str) -> str | None:
@@ -239,6 +239,11 @@ def create_glue_role(session: boto3.Session, role_name: str, account_id: str) ->
     except ClientError as e:
         print(f"✗ Failed to create role: {e.response['Error']['Message']}")
         return None
+    except TokenRetrievalError:
+        print("✗ AWS SSO token has expired")
+        print("  Please refresh your SSO session:")
+        print("  aws sso login --profile <your-profile>")
+        return None
 
 
 def create_custom_source(
@@ -349,6 +354,11 @@ def create_custom_source(
         print("  • aws configure")
         print("  • Environment variables (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)")
         print("  • IAM role (if running on EC2)")
+        return False
+    except TokenRetrievalError:
+        print("✗ AWS SSO token has expired")
+        print("  Please refresh your SSO session:")
+        print("  aws sso login --profile <your-profile>")
         return False
 
 
