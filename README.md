@@ -21,7 +21,7 @@ The easiest way to use this tool is with [uvx](https://github.com/astral-sh/uv),
 which runs the tool in an isolated environment:
 
 ```sh
-uvx --from security-lake-tools security-lake-create-source --help
+uvx security-lake-tools --help
 ```
 
 Alternatively, install it with:
@@ -35,7 +35,7 @@ uv pip install security-lake-tools
 ### Create a custom source
 
 ```sh
-uvx --from security-lake-tools security-lake-create-source \
+uvx security-lake-tools create-source \
   --external-id your-external-id \
   --region us-east-1 \
   --account-id 123456789012 \
@@ -46,11 +46,10 @@ uvx --from security-lake-tools security-lake-create-source \
 ### List available OCSF event classes
 
 ```bash
-# Using uvx
-uvx --from security-lake-tools security-lake-create-source --list
+uvx security-lake-tools create-source --list
 
 # Or if installed
-security-lake-create-source --list
+security-lake-tools create-source --list
 ```
 
 ## Detailed Usage
@@ -73,7 +72,7 @@ security-lake-create-source --list
 ### Command-Line Options
 
 ```bash
-security-lake-create-source [OPTIONS] CLASS_UID
+security-lake-tools create-source [OPTIONS] CLASS_UID
 
 Arguments:
   CLASS_UID          OCSF class UID (e.g., 1001 for File System Activity)
@@ -136,7 +135,7 @@ By default, the tool automatically creates a Glue service role with:
 To use an existing role:
 
 ```bash
-security-lake-create-source 1001 \
+security-lake-tools create-source 1001 \
   --external-id your-external-id \
   --glue-role-arn arn:aws:iam::123456789012:role/MyExistingGlueRole
 ```
@@ -144,7 +143,7 @@ security-lake-create-source 1001 \
 To prevent automatic role creation:
 
 ```bash
-security-lake-create-source 1001 \
+security-lake-tools create-source 1001 \
   --external-id your-external-id \
   --no-create-role
 ```
@@ -190,7 +189,7 @@ For each custom source, Security Lake creates:
 For more detailed output, set the `AWS_DEBUG` environment variable:
 
 ```bash
-AWS_DEBUG=1 security-lake-create-source 1001 --external-id test
+AWS_DEBUG=1 security-lake-tools create-source 1001 --external-id test
 ```
 
 ## Development

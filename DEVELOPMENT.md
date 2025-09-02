@@ -8,10 +8,10 @@ There are several ways to run the script from the source tree:
 
 ```bash
 # From anywhere, point to your local development directory
-uvx --from /path/to/security-lake-tools security-lake-create-source --help
+uvx --from /path/to/security-lake-tools security-lake-tools --help
 
 # Or from within the project directory
-uvx --from . security-lake-create-source --help
+uvx --from . security-lake-tools --help
 ```
 
 ### Method 2: Using uv run (Recommended for development)
@@ -33,7 +33,7 @@ uv run python -m security_lake_tools.create_source 1001 \
 uv pip install -e .
 
 # Now you can use the command directly
-security-lake-create-source --help
+security-lake-tools --help
 ```
 
 ### Method 3: Direct Python execution
@@ -130,7 +130,7 @@ source test-env/bin/activate  # On Windows: test-env\Scripts\activate
 uv pip install dist/security_lake_tools-*.whl
 
 # Test it works
-security-lake-create-source --help
+security-lake-tools --help
 
 # Clean up
 deactivate
@@ -143,10 +143,12 @@ rm -rf test-env
 2. Update CHANGELOG.md (if you have one)
 3. Commit changes
 4. Create and push a tag:
+
    ```bash
    git tag v0.1.0
    git push origin v0.1.0
    ```
+
 5. Create a GitHub release
 6. The GitHub Action will automatically publish to PyPI
 

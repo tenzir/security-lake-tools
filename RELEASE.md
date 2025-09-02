@@ -2,18 +2,20 @@
 
 ## Prerequisites
 
-1. **PyPI Account**: Create at https://pypi.org/account/register/
-2. **TestPyPI Account**: Create at https://test.pypi.org/account/register/
+1. **PyPI Account**: Create at <https://pypi.org/account/register/>
+2. **TestPyPI Account**: Create at <https://test.pypi.org/account/register/>
 3. **GitHub Repository**: Push code to GitHub
 
 ## Testing with TestPyPI
 
 ### 1. Build the Package
+
 ```bash
 uv build
 ```
 
 ### 2. Upload to TestPyPI
+
 ```bash
 # Set your TestPyPI token
 export UV_PUBLISH_TOKEN=pypi-xxxxx
@@ -22,6 +24,7 @@ uv publish
 ```
 
 ### 3. Test Installation
+
 ```bash
 # Test with pip
 uv pip install --index-url https://test.pypi.org/simple/ \
@@ -30,8 +33,7 @@ uv pip install --index-url https://test.pypi.org/simple/ \
 
 # Test with uvx
 uvx --index https://test.pypi.org/simple/ \
-    --from security-lake-tools \
-    security-lake-create-source --help
+    security-lake-tools --help
 ```
 
 ## Production Release
@@ -40,10 +42,13 @@ uvx --index https://test.pypi.org/simple/ \
 
 1. **Update Version** in `pyproject.toml`
 2. **Build**:
+
    ```bash
    uv build
    ```
+
 3. **Upload to PyPI**:
+
    ```bash
    export UV_PUBLISH_TOKEN=pypi-xxxxx  # Your real PyPI token
    uv publish
@@ -52,7 +57,7 @@ uvx --index https://test.pypi.org/simple/ \
 ### Option 2: GitHub Release (Recommended)
 
 1. **Set up Trusted Publishing** on PyPI:
-   - Go to https://pypi.org/manage/account/publishing/
+   - Go to <https://pypi.org/manage/account/publishing/>
    - Add a new publisher:
      - Owner: yourusername
      - Repository: security-lake-tools
@@ -65,11 +70,13 @@ uvx --index https://test.pypi.org/simple/ \
    - Create `testpypi` environment
 
 3. **Create a Release**:
+
    ```bash
    # Tag the version
    git tag v0.1.0
    git push origin v0.1.0
    ```
+
    - Go to GitHub → Releases → Create Release
    - Choose the tag
    - GitHub Actions will automatically publish to PyPI
@@ -87,7 +94,7 @@ Before each release:
 
 ```bash
 # Install from PyPI
-uvx --from security-lake-tools security-lake-create-source --version
+uvx security-lake-tools --version
 
 # Check PyPI page
 open https://pypi.org/project/security-lake-tools/

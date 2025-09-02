@@ -15,14 +15,14 @@ uv pip install --index-url https://test.pypi.org/simple/ \
 
 # Test the command
 echo "Testing the command..."
-security-lake-create-source --help
+security-lake-tools --help
 
 # Test with uvx
 echo "Testing with uvx..."
 deactivate
 uvx --from https://test.pypi.org/simple/ \
     --index-url https://test.pypi.org/simple/ \
-    security-lake-tools security-lake-create-source --help
+    security-lake-tools --help
 
 # Clean up
 echo "Cleaning up..."
