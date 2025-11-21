@@ -253,6 +253,7 @@ def create_custom_source(
     external_id: str,
     glue_role_arn: str,
     session: boto3.Session,
+    source_name: str | None = None,
 ) -> bool:
     """Create a Security Lake custom source."""
 
@@ -262,7 +263,8 @@ def create_custom_source(
         return False
 
     event_class = OCSF_EVENT_CLASSES[class_uid]
-    source_name = f"tnz-ocsf-{class_uid}"
+    if source_name is None:
+        source_name = f"tnz-ocsf-{class_uid}"
 
     print(f"→ Creating custom source: {source_name} for event class: {event_class}")
     print(f"  Region: {region}")
@@ -409,6 +411,11 @@ Examples:
         help="Do not automatically create the Glue role if it doesn't exist",
     )
 
+    parser.add_argument(
+        "--source-name",
+        help="Custom source name (default: auto-generated as 'tnz-ocsf-{class_uid}')",
+    )
+
     args = parser.parse_args()
 
     # Handle --list option
@@ -512,7 +519,7 @@ Examples:
 
     # Create the custom source
     success = create_custom_source(
-        args.class_uid, args.region, account_id, args.external_id, glue_role_arn, session
+        args.class_uid, args.region, account_id, args.external_id, glue_role_arn, session, args.source_name
     )
 
     return 0 if success else 1
