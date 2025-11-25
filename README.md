@@ -83,6 +83,7 @@ Options:
   --external-id      External ID for trust relationship (required)
   --glue-role-arn    ARN of existing Glue service role
   --profile          AWS profile to use
+  --source-name      Custom source name (default: auto-generated as 'tnz-ocsf-{class_uid}')
   --no-create-role   Don't auto-create Glue role if missing
   --skip-role-check  Skip Glue role verification
   --list             List all available OCSF class UIDs
@@ -122,6 +123,18 @@ Lake.
 - 2007: Application Security Posture Finding
 
 [See full list with `--list` option]
+
+### Custom Source Names
+
+By default, sources are named using the pattern `tnz-ocsf-{class_uid}`. You can specify a custom name:
+
+```bash
+security-lake-tools create-source 1001 \
+  --external-id your-external-id \
+  --source-name my-custom-source
+```
+
+This custom name will be used in the provider role and S3 bucket path.
 
 ### IAM Role Management
 
