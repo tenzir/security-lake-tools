@@ -73,6 +73,11 @@ Examples:
         help="Do not automatically create the Glue role if it doesn't exist",
     )
 
+    create_parser.add_argument(
+        "--source-name",
+        help="Custom source name (default: auto-generated as 'tnz-ocsf-{class_uid}')",
+    )
+
     args = parser.parse_args()
 
     if args.command == "create-source":
@@ -97,6 +102,8 @@ Examples:
             sys.argv.append("--skip-role-check")
         if args.no_create_role:
             sys.argv.append("--no-create-role")
+        if args.source_name:
+            sys.argv.extend(["--source-name", args.source_name])
 
         return create_source_main()
 
