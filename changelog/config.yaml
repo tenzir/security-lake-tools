@@ -1,0 +1,4 @@
+id: security-lake-tools
+name: Tenzir Security Lake Tools
+description: Utilities for working with Amazon Security Lake
+repository: tenzir/security-lake-tools
