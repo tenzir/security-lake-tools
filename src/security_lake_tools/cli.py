@@ -5,6 +5,7 @@ import argparse
 import sys
 
 from .create_source import main as create_source_main
+from .status import main as status_main
 
 
 def main() -> int:
@@ -73,6 +74,20 @@ Examples:
         help="Do not automatically create the Glue role if it doesn't exist",
     )
 
+    # Status subcommand
+    status_parser = subparsers.add_parser(
+        "status",
+        help="Show the current Security Lake setup",
+        description="Show the current Security Lake configuration including data lakes, log sources, subscribers, and exceptions",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+
+    status_parser.add_argument(
+        "--region", help="AWS region (default: from profile or AWS_DEFAULT_REGION)"
+    )
+
+    status_parser.add_argument("--profile", help="AWS profile to use")
+
     args = parser.parse_args()
 
     if args.command == "create-source":
@@ -99,6 +114,14 @@ Examples:
             sys.argv.append("--no-create-role")
 
         return create_source_main()
+
+    if args.command == "status":
+        sys.argv = ["security-lake-tools"]
+        if args.region:
+            sys.argv.extend(["--region", args.region])
+        if args.profile:
+            sys.argv.extend(["--profile", args.profile])
+        return status_main()
 
     return 0
 
