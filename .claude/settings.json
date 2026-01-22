@@ -8,9 +8,7 @@
     }
   },
   "enabledPlugins": {
-    "formatter@tenzir": true,
-    "git@tenzir": true,
-    "python@tenzir": true,
-    "ship@tenzir": true
+    "dev@tenzir": true,
+    "python@tenzir": true
   }
 }
